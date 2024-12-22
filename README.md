@@ -10,9 +10,10 @@ git init
 # github repository 생성
 git add .
 git commit -m "Initial commit"
-git remote add origin https://github.com/zoony/rms-app.git
+git remote add origin https://github.com/zoonny/rms-app.git
 git branch -M main
 git push -u origin main
+git push origin main --force
 ```
 
 #### 실행
