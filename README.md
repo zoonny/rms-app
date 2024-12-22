@@ -16,6 +16,17 @@ git push -u origin main
 git push origin main --force
 ```
 
+#### container dev
+
+```shell
+docker build -f Dockerfile.dev -t rms-app-dev .
+docker run -d -t --name rms-app-dev -v ${PWD}:/app -p 8000:8000 rms-app-dev
+# -t 실행 상태 유지
+
+pip install -r requirements.txt
+uvicorn main:app --host 0.0.0.0 --port 8000
+```
+
 #### 실행
 
 ```shell
