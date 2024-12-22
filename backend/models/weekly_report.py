@@ -9,5 +9,6 @@ class WeeklyReport(BaseModel):
     base_date = Column(Date, nullable=False)
     this_week = Column(String, nullable=False)
     next_week = Column(String, nullable=False)
+    member_id = Column(Integer, nullable=False)
     # start_date = Column(Date, nullable=False)
     # end_date = Column(Date, nullable=False)
