@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 from crud.user_crud import UserCRUD
-from schemas.user import UserCreate, UserUpdate
+from schemas.user_schema import UserCreate, UserUpdate
 
 class UserService:
     def __init__(self, db: Session, crud: UserCRUD):
