@@ -8,3 +8,11 @@ class Project(BaseModel):
     name = Column(String, index=True)
     start_time = Column(DateTime, nullable=False)
     end_time = Column(DateTime, nullable=False)
+
+class ProjectMember(BaseModel):
+    __tablename__ = "project_member"
+
+    project_id = Column(Integer, primary_key=True, index=True)
+    member_id = Column(Integer, primary_key=True, index=True)
+    start_time = Column(DateTime, nullable=False)
+    end_time = Column(DateTime, nullable=False)
