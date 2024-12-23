@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
+from sqlalchemy import text
 from schemas.user_schema import UserCreate, UserUpdate, UserResponse
 from db.database import get_db
 from services.user_service import UserService
@@ -14,6 +15,13 @@ def get_user_service(db: Session = Depends(get_db)):
 @router.get("/users", response_model=list[UserResponse])
 def read_users(skip: int = 0, limit: int = 10, user_service: UserService = Depends(get_user_service)):
     return user_service.list_users(skip=skip, limit=limit)
+
+@router.get("/users_query", response_model=list)
+def read_users(session: Session = Depends(get_db)):
+    result = session.execute(text("SELECT * FROM users WHERE name = :name"), {"name": "string"})
+    for row in result:
+        print(row)
+    return result
 
 @router.get("/users/{user_id}", response_model=UserResponse)
 def read_user(user_id: int, user_service: UserService = Depends(get_user_service)):

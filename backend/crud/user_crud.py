@@ -10,7 +10,7 @@ class UserCRUD:
         return db.query(User).filter(User.id == user_id).first()
 
     def create_user(self, db: Session, user: UserCreate):
-        db_user = User(name=user.name, email=user.email)
+        db_user = user.to_model()
         db.add(db_user)
         db.commit()
         db.refresh(db_user)
@@ -19,8 +19,7 @@ class UserCRUD:
     def update_user(self, db: Session, user_id: int, user: UserUpdate):
         db_user = db.query(User).filter(User.id == user_id).first()
         if db_user:
-            db_user.name = user.name
-            db_user.email = user.email
+            user.update_model(db_user)
             db.commit()
             db.refresh(db_user)
         return db_user

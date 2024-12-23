@@ -10,7 +10,7 @@ class MemberCRUD:
         return db.query(Member).filter(Member.id == member_id).first()
 
     def create_member(self, db: Session, member: MemberCreate):
-        db_member = Member(employee_id=member.employee_id, name=member.name, position=member.position)
+        db_member = member.to_model()
         db.add(db_member)
         db.commit()
         db.refresh(db_member)
@@ -19,9 +19,7 @@ class MemberCRUD:
     def update_member(self, db: Session, member_id: int, member: MemberUpdate):
         db_member = db.query(Member).filter(Member.id == member_id).first()
         if db_member:
-            db_member.employee_id = member.employee_id
-            db_member.name = member.name
-            db_member.position = member.position
+            member.update_model(db_member)
             db.commit()
             db.refresh(db_member)
         return db_member

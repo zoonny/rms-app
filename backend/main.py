@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from db.database import Base, engine
-from api import user_router, project_router, member_router, weekly_report_router
+from api import user_router, project_router, member_router, weekly_report_router, team_router
 
 # 데이터베이스 초기화
 Base.metadata.create_all(bind=engine)
@@ -21,10 +21,11 @@ app.swagger_ui_parameters = {
 }
 
 # 라우터 등록
-app.include_router(user_router.router, prefix="/api", tags=["users"])
-app.include_router(project_router.router, prefix="/api", tags=["projects"])
+app.include_router(team_router.router, prefix="/api", tags=["team"])
 app.include_router(member_router.router, prefix="/api", tags=["members"])
+app.include_router(project_router.router, prefix="/api", tags=["projects"])
 app.include_router(weekly_report_router.router, prefix="/api", tags=["weekly_report"])
+app.include_router(user_router.router, prefix="/api", tags=["users"])
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=80)
