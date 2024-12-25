@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from db.database import Base, engine
 from api import user_router, project_router, member_router, weekly_report_router, team_router
 
-# 데이터베이스 초기화
+# 터베이스 초기화
 Base.metadata.create_all(bind=engine)
 
 # FastAPI 애플리케이션 생성

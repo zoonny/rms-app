@@ -2,6 +2,7 @@ from pydantic import ConfigDict, BaseModel
 from models.member import Member
 
 class MemberBase(BaseModel):
+    id: str
     employee_id: str
     name: str
     position: str

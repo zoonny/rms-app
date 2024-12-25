@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
 from models.base import BaseModel
 
@@ -9,9 +9,9 @@ from models.base import BaseModel
 # members = relationship("Member", back_populates="team")
 
 class Team(BaseModel):
-    __tablename__ = "teams"
+    __tablename__ = "team"
 
-    id = Column(Integer, primary_key=True, index=True)
+    id = Column(String, primary_key=True, index=True)
     name = Column(String)
 
     # Relationship 정의

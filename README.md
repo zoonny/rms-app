@@ -27,6 +27,11 @@ pip install -r requirements.txt
 uvicorn main:app --host 0.0.0.0 --port 8000
 ```
 
+```shell
+docker build -t rms-db .
+docker run -d --name rms-db-container -p 5432:5432 rms-db
+```
+
 #### 실행
 
 ```shell

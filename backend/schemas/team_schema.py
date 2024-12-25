@@ -2,6 +2,7 @@ from pydantic import ConfigDict, BaseModel
 from models.team import Team
 
 class TeamBase(BaseModel):
+    id: str
     name: str
 
 class TeamCreate(TeamBase):

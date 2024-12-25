@@ -2,7 +2,7 @@ from sqlalchemy import Column, Integer, String, Date
 from models.base import BaseModel
 
 class WeeklyReport(BaseModel):
-    __tablename__ = "weekly_reports"
+    __tablename__ = "weekly_report"
 
     id = Column(Integer, primary_key=True, index=True)
     week_number = Column(Integer, nullable=False)

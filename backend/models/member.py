@@ -3,16 +3,25 @@
 from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
 from models.base import BaseModel
+# from models.project_member import project_member
 
 class Member(BaseModel):
-    __tablename__ = "members"
+    __tablename__ = "member"
 
-    id = Column(Integer, primary_key=True, index=True)
-    employee_id = Column(String, unique=True)
+    id = Column(String, primary_key=True, index=True)
+    employee_id = Column(String, unique=False, nullable=True)   # 2사번
     name = Column(String, index=True)
     position = Column(String, nullable=False)
-    team_id = Column(Integer)   # ForeignKeyConstraint 생략
-    # team_id = Column(Integer, ForeignKey("teams.id"))   # ForeignKey 추가
+    # team_id = Column(String)   # ForeignKeyConstraint 생략
+    team_id = Column(String, ForeignKey("team.id"))   # ForeignKey 추가
 
     # Relationship 정의
     team = relationship("Team", back_populates="members")
+    # primaryjoin 사용 : 아래 오류 해결
+    # sqlalchemy.exc.NoForeignKeysError: Could not determine join condition between parent/child tables on relationship Member.team - there are no foreign keys linking these tables.  Ensure that referencing columns are associated with a ForeignKey or ForeignKeyConstraint, or specify a 'primaryjoin' expression.
+    # team = relationship("Team", primaryjoin="Member.team_id == Team.id")
+    # cascade 활성화
+    # team = relationship("Team", back_populates="members", cascade="all, delete")
+
+    # 관계 설정
+    project_links = relationship('ProjectMember', back_populates='member')

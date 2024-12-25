@@ -1,18 +1,18 @@
-from sqlalchemy import Column, Integer, String, DateTime
+from sqlalchemy import Column, Integer, String, DateTime, Date, Table, ForeignKey
+from sqlalchemy.orm import relationship
 from models.base import BaseModel
+# from models.project_member import project_member
 
 class Project(BaseModel):
-    __tablename__ = "projects"
+    __tablename__ = "project"
 
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, index=True)
-    start_time = Column(DateTime, nullable=False)
-    end_time = Column(DateTime, nullable=False)
+    start_date = Column(Date, nullable=False)
+    end_date = Column(Date, nullable=False)
 
-# class ProjectMember(BaseModel):
-#     __tablename__ = "project_member"
+    # 관계 설정
+    member_links = relationship('ProjectMember', back_populates='project')
 
-#     project_id = Column(Integer, primary_key=True, index=True)
-#     member_id = Column(Integer, primary_key=True, index=True)
-#     start_time = Column(DateTime, nullable=False)
-#     end_time = Column(DateTime, nullable=False)
+    def __repr__(self):
+        return f"MyObject(id={self.id}, name={self.name})"
