@@ -7,7 +7,7 @@ class WeeklyReportBase(BaseModel):
     base_date: date
     this_week: str
     next_week: str
-    member_id: int
+    member_id: str
 
 class WeeklyReportCreate(WeeklyReportBase):
     def to_model(self):

@@ -1,11 +1,14 @@
 from pydantic import ConfigDict, BaseModel
+from typing import Optional
 from models.member import Member
 
 class MemberBase(BaseModel):
     id: str
-    employee_id: str
+    employee_id: Optional[str]
     name: str
     position: str
+
+    model_config = ConfigDict(from_attributes=True)
 
 class MemberCreate(MemberBase):
     def to_model(self):
@@ -25,6 +28,7 @@ class MemberUpdate(MemberBase):
     pass
 
 class MemberResponse(MemberBase):
-    id: int
+    id: str
 
-    model_config = ConfigDict(from_attributes=True)
+class MemberCountResponse(MemberBase):
+    count: int

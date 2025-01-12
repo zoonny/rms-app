@@ -15,4 +15,4 @@ class Project(BaseModel):
     member_links = relationship('ProjectMember', back_populates='project')
 
     def __repr__(self):
-        return f"MyObject(id={self.id}, name={self.name})"
+        return f"Project(id={self.id}, name={self.name}, start_date={self.start_date}, end_date={self.end_date})"

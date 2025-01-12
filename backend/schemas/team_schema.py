@@ -7,8 +7,7 @@ class TeamBase(BaseModel):
 
 class TeamCreate(TeamBase):
     def to_model(self):
-        team = Team(
-            name=self.name)
+        team = Team(name=self.name)
         return team
     pass
 
@@ -19,6 +18,6 @@ class TeamUpdate(TeamBase):
     pass
 
 class TeamResponse(TeamBase):
-    id: int
+    id: str
 
     model_config = ConfigDict(from_attributes=True)

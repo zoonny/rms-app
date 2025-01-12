@@ -7,9 +7,11 @@ class User(BaseModel):
     # postgres에서 user 테이블 사용, 복수형 예외처리
     __tablename__ = "users"
 
-    id = Column(Integer, primary_key=True, index=True)
+    id = Column(Integer, primary_key=True)
+    email = Column(String, index=True, unique=True)
     name = Column(String, index=True)
-    email = Column(String, unique=True)
+    hashed_password = Column(String)
+    is_active = Column(Integer, default=1)
     permissions = relationship(
         'Permission',
         secondary=user_permission,

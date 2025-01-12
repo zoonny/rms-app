@@ -18,6 +18,7 @@ git push origin main --force
 
 #### container dev
 
+- backend
 ```shell
 docker build -f Dockerfile.dev -t rms-app-dev .
 docker run -d -t --name rms-app-dev -v ${PWD}:/app -p 8000:8000 rms-app-dev
@@ -27,6 +28,13 @@ pip install -r requirements.txt
 uvicorn main:app --host 0.0.0.0 --port 8000
 ```
 
+- frontend
+```shell
+docker build -f Dockerfile.dev -t rms-front-dev .
+docker run -d -t --name rms-front-dev -v ${PWD}:/app -p 8100:3000 rms-front-dev
+```
+
+- database
 ```shell
 docker build -t rms-db .
 docker run -d --name rms-db-container -p 5432:5432 rms-db

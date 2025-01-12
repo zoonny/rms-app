@@ -1,4 +1,4 @@
-from sqlalchemy import or_, func
+from sqlalchemy import or_, func, text
 from sqlalchemy.orm import Session
 from pprint import pprint
 from db.database import SessionLocal
@@ -73,6 +73,12 @@ def selectInnerJoin():
 #     projects = session.query(Team).filter(Team.id.in_(subquery)).all()
 #     for project in projects:
 #         print(project.name)
+
+def selectCountBySql(team_id: str = 'T004'):
+    sql = text("SELECT * FROM member WHERE team_id > :team_id")
+    members = session.execute(sql, {"team_id": team_id})
+    session.commit()
+    print(f"{team_id}: {members}")
 
 def updateMemberName():
     session.query(Member).filter(Member.id == '82022284').update({Member.name: 'Updated'})
@@ -156,6 +162,34 @@ def insertPermission():
 
     session.commit()
 
+def get_member_count(db: Session, team_id: str):
+    # return db.query(Member).filter(Member.team_id == team_id).count()
+    count = db.query(Member).filter(Member.team_id == team_id).count()
+    print(count)
+
+def get_member_project_and_weeklyReport(db: Session, member_id: str):
+    member = db.query(Member).filter(Member.id == member_id).first()
+    pprint('==> member')
+    pprint(vars(member))
+    pprint('==> team')
+    pprint(vars(member.team))
+    pprint('==> weekly_report')
+    pprint([(weekly_report.id, weekly_report.base_date) for weekly_report in member.weekly_reports])
+
+def get_member_task(db: Session, member_id: str):
+    member = db.query(Member).filter(Member.id == member_id).first()
+    pprint('==> member')
+    pprint(vars(member))
+    pprint('==> task')
+    pprint(vars(member.task_links[0].task))
+
+def get_member_task2(db: Session, member_id: str):
+    member = db.query(Member).filter(Member.id == member_id).first()
+    pprint('==> member')
+    pprint(vars(member))
+    pprint('==> task')
+    pprint(vars(member.tasks[0]))
+
 # selectAll()
 # selectOne()
 # selectAnd()
@@ -166,6 +200,7 @@ def insertPermission():
 # selectCount()
 # selectInnerJoin()
 # selectOuterJoin()
+# selectCountBySql()
 # selectSubquery()
 # updateMemberName()
 # deleteMember("1")
@@ -174,4 +209,8 @@ def insertPermission():
 # insertMemberBySql()
 # insertManyToMany()
 # selectManyToMany()
-insertPermission()
+# insertPermission()
+# get_member_count(db=session, team_id="T04")
+# get_member_project_and_weeklyReport(db=session, member_id='82022284')
+# get_member_task(db=session, member_id='82022284')
+get_member_task2(db=session, member_id='82022284')

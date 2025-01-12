@@ -1,1 +1,117 @@
-__pycache__
+frontend.bk/
+# --------------------------------------
+# 🐍 Python 관련 항목
+# --------------------------------------
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+ENV/
+env.bak/
+*.egg-info/
+dist/
+build/
+*.log
+
+# IDE 설정 파일
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# 환경 파일
+*.env
+.env.*
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+*.ipynb
+
+# MyPy 및 pytest
+.mypy_cache/
+.pytest_cache/
+
+# --------------------------------------
+# ⚛️ React 관련 항목
+# --------------------------------------
+node_modules/
+build/
+dist/
+.DS_Store
+*.log
+*.lock
+
+# 환경 파일
+.env
+.env.*.local
+
+# 리액트 프로젝트 설정
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# 에디터 설정 파일
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# 서비스 워커 캐시
+.cache/
+
+# 테스트 관련
+coverage/
+jest/
+*.snap
+
+# --------------------------------------
+# 📦 Node.js 관련 항목
+# --------------------------------------
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# 빌드 파일
+dist/
+build/
+public/
+
+# 환경 파일
+.env
+.env.*.local
+
+# TypeScript 관련
+*.tsbuildinfo
+out/
+lib/
+temp/
+
+# PM2 프로세스 파일
+*.pid
+
+# --------------------------------------
+# 🌐 공통 항목
+# --------------------------------------
+# 시스템 파일
+.DS_Store
+Thumbs.db
+
+# 로그 파일
+*.log
+
+# 에디터 설정 파일
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# 환경 파일
+.env
+.env.local
+.env.production
+.env.development
+.env.test
