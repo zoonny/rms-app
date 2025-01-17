@@ -98,3 +98,33 @@ fastapi_crud/
 
 
 http://127.0.0.1:8000/docs
+
+
+### frontend
+
+shadcn/ui
+
+```shell
+# nextjs 프로젝트 생성
+npx shadcn@latest init
+# 프로젝트 이름 입력: rms-app
+# 스타일 선택: Default
+# 스타일 기본 색상: Slate
+# React Server Components 사용 여부: yes
+# Tailwind CSS 설정 파일 경로: tailwind.config.js
+# CSS 글로벌 스타일 파일 경로: app/globals.css
+# components 디렉토리 경로: components
+# utils.ts 파일 경로: lib/utils.ts
+# React 18 사용 여부: yes
+# TypeScript 사용 여부: yes
+# ESLint 사용 여부: yes
+# Prettier 사용 여부: yes
+# Import alias 설정: yes (@/components)
+npx shadcn@latest add button
+npx shadcn@latest add sidebar
+npx shadcn@latest add dropdown-menu
+npx shadcn@latest add collapsible
+npx shadcn@latest add avatar
+
+npm run dev
+```
