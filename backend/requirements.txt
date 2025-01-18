@@ -5,3 +5,7 @@ psycopg2-binary
 pytest
 pytest-asyncio
 pytest-cov
+holidayskr
+passlib
+python-jose
+python-multipart

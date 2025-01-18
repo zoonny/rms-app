@@ -1,4 +1,5 @@
 from sqlalchemy.orm import Session
+from core.logger import logger
 from crud.member_crud import MemberCRUD
 from schemas.member_schema import MemberCreate, MemberUpdate
 
@@ -24,3 +25,7 @@ class MemberService:
 
     def delete_member(self, member_id: int):
         return self.crud.delete_member(self.db, member_id=member_id)
+
+    def count_member(self, team_id: str = 'ALL'):
+        logger.info(f'team_id: {team_id}')
+        return self.crud.get_member_count(self.db, team_id)

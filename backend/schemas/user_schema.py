@@ -5,28 +5,34 @@ from models.user import User
 # from db.database import BaseModel
 
 class UserBase(BaseModel):
-    name: str
     email: str
-    # created_at: datetime
-    # updated_at: datetime
+    name: str
+    password: str
+    # is_active: int
+
+    # model_config = ConfigDict(from_attributes=True)
+    class Config:
+        orm_mode = True
     
 
 class UserCreate(UserBase):
     def to_model(self):
         user = User(
+            email=self.email,
             name=self.name, 
-            email=self.email)
+            password=None)
         return user 
     pass
 
 class UserUpdate(UserBase):
     def update_model(self, user: User):
-        user.name = self.name
-        user.email = self.email
+        user.email = self.email,
+        user.name = self.name,
+        user.hashed_password = self.password,
+        # user.is_active = self.is_active
         return
     pass
 
 class UserResponse(UserBase):
     id: int
-
-    model_config = ConfigDict(from_attributes=True)
+    email: str

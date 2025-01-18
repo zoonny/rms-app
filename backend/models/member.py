@@ -4,6 +4,7 @@ from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
 from models.base import BaseModel
 # from models.project_member import project_member
+from models.task import member_task
 
 class Member(BaseModel):
     __tablename__ = "member"
@@ -25,3 +26,17 @@ class Member(BaseModel):
 
     # 관계 설정
     project_links = relationship('ProjectMember', back_populates='member')
+    # weekly_reports = relationship('WeeklyReport', back_populates='member')
+    weekly_reports = relationship(
+        'WeeklyReport',
+        primaryjoin='Member.id == WeeklyReport.member_id',
+        back_populates='member',
+        foreign_keys='WeeklyReport.member_id',
+        lazy='selectin'
+    )
+    # task_links = relationship('MemberTask', back_populates='member')
+    tasks = relationship(
+        'Task',
+        secondary=member_task,
+        back_populates='members'
+    )

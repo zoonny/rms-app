@@ -1,6 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from schemas.member_schema import MemberCreate, MemberUpdate, MemberResponse
+from core.logger import logger
+from schemas.member_schema import MemberCreate, MemberUpdate, MemberResponse, MemberCountResponse
 from db.database import get_db
 from services.member_service import MemberService
 from crud.member_crud import MemberCRUD
@@ -42,3 +43,9 @@ def delete_existing_member(member_id: int, member_service: MemberService = Depen
         return member_service.delete_member(member_id)
     except ValueError as e:
         raise HTTPException(status_code=404, detail=str(e))
+
+# @router.get("/members/count/{team_id}", response_model=MemberCountResponse)
+@router.get("/members/count/{team_id}")
+def count_members(team_id: str, member_service: MemberService = Depends(get_member_service)):
+    count = member_service.count_member(team_id)
+    return {"count": count}

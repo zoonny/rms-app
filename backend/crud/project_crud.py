@@ -5,6 +5,9 @@ from schemas.project_schema import ProjectCreate, ProjectUpdate
 class ProjectCRUD:
     def get_projects(self, db: Session, skip: int = 0, limit: int = 10):
         return db.query(Project).offset(skip).limit(limit).all()
+        # projects = db.query(Project).offset(skip).limit(limit).all()
+        # print(projects)
+        # return projects
 
     def get_project(self, db: Session, project_id: int):
         return db.query(Project).filter(Project.id == project_id).first()
