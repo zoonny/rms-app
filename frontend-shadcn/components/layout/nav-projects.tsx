@@ -24,6 +24,7 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar"
+import DynamicLucideIcon from "./dynamic-lucide-icon"
 
 export function NavProjects({
   title,
@@ -33,7 +34,8 @@ export function NavProjects({
   projects: {
     name: string
     url: string
-    icon: LucideIcon
+    // icon: LucideIcon
+    icon: string
   }[]
 }) {
   const { isMobile } = useSidebar()
@@ -46,7 +48,8 @@ export function NavProjects({
           <SidebarMenuItem key={item.name}>
             <SidebarMenuButton asChild>
               <a href={item.url}>
-                <item.icon />
+                {/* <item.icon /> */}
+                <DynamicLucideIcon className="size-4 shrink-0" iconName={item.icon} />
                 <span>{item.name}</span>
               </a>
             </SidebarMenuButton>
