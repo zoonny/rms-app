@@ -1,0 +1,129 @@
+{
+  "user": {
+    "name": "82022284",
+    "email": "hyung@kt.com",
+    "avatar": "/avatars/shadcn.jpg"
+  },
+  "teams": [
+    {
+      "name": "사업PMO팀",
+      "logo": "SquareKanban",
+      "plan": "Business PMO Team"
+    },
+    {
+      "name": "전략사업팀.",
+      "logo": "MousePointerClick",
+      "plan": "Strategy Business Team"
+    },
+    {
+      "name": "그룹사업팀",
+      "logo": "Group",
+      "plan": "Group Business Team"
+    },
+    {
+      "name": "전략개발팀",
+      "logo": "FolderCode",
+      "plan": "Strategy Development Team"
+    }
+  ],
+  "menus": [
+    {
+      "title": "현황",
+      "url": "#",
+      "icon": "SquareTerminal",
+      "isActive": true,
+      "items": [
+        {
+          "title": "팀원현황",
+          "url": "/team"
+        },
+        {
+          "title": "프로젝트현황",
+          "url": "/projects"
+        }
+      ]
+    },
+    {
+      "title": "Models",
+      "url": "#",
+      "icon": "Bot",
+      "items": [
+        {
+          "title": "Genesis",
+          "url": "#"
+        },
+        {
+          "title": "Explorer",
+          "url": "#"
+        },
+        {
+          "title": "Quantum",
+          "url": "#"
+        }
+      ]
+    },
+    {
+      "title": "Documentation",
+      "url": "#",
+      "icon": "BookOpen",
+      "items": [
+        {
+          "title": "Introduction",
+          "url": "#"
+        },
+        {
+          "title": "Get Started",
+          "url": "#"
+        },
+        {
+          "title": "Tutorials",
+          "url": "#"
+        },
+        {
+          "title": "Changelog",
+          "url": "#"
+        }
+      ]
+    },
+    {
+      "title": "Settings",
+      "url": "#",
+      "icon": "Settings2",
+      "items": [
+        {
+          "title": "General",
+          "url": "#"
+        },
+        {
+          "title": "Team",
+          "url": "#"
+        },
+        {
+          "title": "Billing",
+          "url": "#"
+        },
+        {
+          "title": "Limits",
+          "url": "#"
+        }
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "Design Engineering",
+      "url": "#",
+      "icon": "Frame"
+    },
+    {
+      "name": "Sales & Marketing",
+      "url": "#",
+      "icon": "PieChart"
+    },
+    {
+      "name": "Travel",
+      "url": "#",
+      "icon": "Map"
+    }
+  ]
+}

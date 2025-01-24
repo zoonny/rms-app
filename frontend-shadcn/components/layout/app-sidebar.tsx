@@ -25,149 +25,28 @@ import {
   SidebarHeader,
   SidebarRail,
 } from "@/components/ui/sidebar"
-
-// This is sample data.
-const data = {
-  user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
-  },
-  teams: [
-    {
-      name: "Acme Inc",
-      logo: GalleryVerticalEnd,
-      plan: "Enterprise",
-    },
-    {
-      name: "Acme Corp.",
-      logo: AudioWaveform,
-      plan: "Startup",
-    },
-    {
-      name: "Evil Corp.",
-      logo: Command,
-      plan: "Free",
-    },
-  ],
-  navMain: [
-    {
-      title: "Playground",
-      url: "#",
-      icon: SquareTerminal,
-      isActive: true,
-      items: [
-        {
-          title: "History",
-          url: "#",
-        },
-        {
-          title: "Starred",
-          url: "#",
-        },
-        {
-          title: "Settings",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Models",
-      url: "#",
-      icon: Bot,
-      items: [
-        {
-          title: "Genesis",
-          url: "#",
-        },
-        {
-          title: "Explorer",
-          url: "#",
-        },
-        {
-          title: "Quantum",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Documentation",
-      url: "#",
-      icon: BookOpen,
-      items: [
-        {
-          title: "Introduction",
-          url: "#",
-        },
-        {
-          title: "Get Started",
-          url: "#",
-        },
-        {
-          title: "Tutorials",
-          url: "#",
-        },
-        {
-          title: "Changelog",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Settings",
-      url: "#",
-      icon: Settings2,
-      items: [
-        {
-          title: "General",
-          url: "#",
-        },
-        {
-          title: "Team",
-          url: "#",
-        },
-        {
-          title: "Billing",
-          url: "#",
-        },
-        {
-          title: "Limits",
-          url: "#",
-        },
-      ],
-    },
-  ],
-  projects: [
-    {
-      name: "Design Engineering",
-      url: "#",
-      icon: Frame,
-    },
-    {
-      name: "Sales & Marketing",
-      url: "#",
-      icon: PieChart,
-    },
-    {
-      name: "Travel",
-      url: "#",
-      icon: Map,
-    },
-  ],
-}
+import useTeam from "@/hooks/use-team"
+import { Skeleton } from "../ui/skeleton"
+import useUser from "@/hooks/use-user"
+import useProject from "@/hooks/use-project"
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const { data: teams, error: teamsError, isLoading: teamsIsLoading } = useTeam("teams")
+  const { data: user, error: userError, isLoading: userIsLoading } = useUser("user")
+  const { data: menus, error: menusError, isLoading: menusIsLoading } = useUser("menus")
+  const { data: projects, error: projectsError, isLoading: projectsIsLoading } = useProject("projects")
+
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
-        <TeamSwitcher teams={data.teams} />
+        {teamsIsLoading? <Skeleton className="h-12 w-full" /> : <TeamSwitcher teams={teams}/>}
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={data.navMain} />
-        <NavProjects projects={data.projects} />
+        {menusIsLoading ? undefined : <NavMain title="팀" items={menus} />}
+        {projectsIsLoading ? undefined : <NavProjects title="프로젝트" projects={projects} />}
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        {userIsLoading ? <Skeleton className="h-12 w-full" /> : <NavUser user={user} />}
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>

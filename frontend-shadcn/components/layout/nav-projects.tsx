@@ -26,8 +26,10 @@ import {
 } from "@/components/ui/sidebar"
 
 export function NavProjects({
+  title,
   projects,
 }: {
+  title: string
   projects: {
     name: string
     url: string
@@ -38,7 +40,7 @@ export function NavProjects({
 
   return (
     <SidebarGroup className="group-data-[collapsible=icon]:hidden">
-      <SidebarGroupLabel>Projects</SidebarGroupLabel>
+      <SidebarGroupLabel>{title}</SidebarGroupLabel>
       <SidebarMenu>
         {projects.map((item) => (
           <SidebarMenuItem key={item.name}>
@@ -80,7 +82,7 @@ export function NavProjects({
         <SidebarMenuItem>
           <SidebarMenuButton className="text-sidebar-foreground/70">
             <MoreHorizontal className="text-sidebar-foreground/70" />
-            <span>More</span>
+            <span>더보기</span>
           </SidebarMenuButton>
         </SidebarMenuItem>
       </SidebarMenu>
