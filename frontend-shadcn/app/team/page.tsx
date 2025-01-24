@@ -2,8 +2,8 @@ import React from 'react'
 
 function TeamPage() {
   return (
-    <div>team</div>
+    <div>Team Page</div>
   )
 }
 
-export default TeamPage
+export default TeamPage;
