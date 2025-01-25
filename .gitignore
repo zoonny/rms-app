@@ -87,7 +87,7 @@ public/
 # TypeScript 관련
 *.tsbuildinfo
 out/
-lib/
+#lib/
 temp/
 
 # PM2 프로세스 파일
@@ -110,7 +110,7 @@ Thumbs.db
 *.swo
 
 # 환경 파일
-.env
+#.env
 .env.local
 .env.production
 .env.development
