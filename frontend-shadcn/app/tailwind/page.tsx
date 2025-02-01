@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import React from "react";
+import HyphenSplitInputs from "./hyphen-split-inputs";
 
 const TailwindPage = () => {
   return (
@@ -10,6 +11,9 @@ const TailwindPage = () => {
                 <div className="text-xl font-medium text-black">Hyung</div>
                 <p className="text-gray-500">You have a new message!</p>
             </div>
+        </div>
+        <div>
+            <HyphenSplitInputs/>
         </div>
       {/* <div className="bg-white mt-2 text-gray-600">
         <div>This is contents.</div>

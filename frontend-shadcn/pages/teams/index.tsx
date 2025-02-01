@@ -26,8 +26,8 @@ function TeamsPage({ teams }: { teams: Team[] }) {
   return (
     <div>
       <h1>조직정보</h1>
-      {teams.map((team) => (
-        <p>{team.name}</p>
+      {teams.map((team, index) => (
+        <p key={index}>{team.name}</p>
       ))}
     </div>
   );

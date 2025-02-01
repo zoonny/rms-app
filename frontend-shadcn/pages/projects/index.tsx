@@ -27,8 +27,8 @@ function ProjectsPage({ projects }: { projects: Project[] }) {
   return (
     <div>
       <h1>프로젝트정보</h1>
-      {projects.map((project: Project) => (
-        <p key={project.name}>{project.name}</p>
+      {projects.map((project: Project, index: number) => (
+        <p key={index}>{project.name}</p>
       ))}
     </div>
   );
