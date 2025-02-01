@@ -2,7 +2,8 @@
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { NumberContext } from "./page";
 
 const initialState = {
   text1: "",
@@ -15,9 +16,14 @@ const initialState = {
 function HyphenSplitInputs() {
   const [formData, setFormData] = useState(initialState);
   const [invalidPastedFormat, setInvalidPasteFormat] = useState(false);
+  const {setNumber} = useContext(NumberContext);
+
+  useEffect(() => {
+    setNumber(`${formData.text1}-${formData.text2}-${formData.text3}-${formData.text4}-${formData.text5}`);
+  }, [formData])
 
   // 붙여넣기 이벤트 처리 함수: 클립보드에서 문자열을 읽어와서 하이픈(-) 기준으로 분리
-  const handlePaste = (e) => {
+  const handlePaste = (e: React.ClipboardEvent) => {
     e.preventDefault();
     const pastedData = e.clipboardData.getData("Text");
 
@@ -37,6 +43,8 @@ function HyphenSplitInputs() {
     });
 
     setInvalidPasteFormat(false);
+    // setNumber(`${formData.text1}-${formData.text2}-${formData.text3}-${formData.text4}-${formData.text5}`);
+    setNumber(pastedData)
   };
 
   // 사용자가 직접 입력하는 경우에도 실시간 업데이트 (선택사항)
@@ -90,6 +98,7 @@ function HyphenSplitInputs() {
         <Button
           onClick={() => {
             setFormData(initialState);
+            setNumber('');
           }}
         >
           clear
